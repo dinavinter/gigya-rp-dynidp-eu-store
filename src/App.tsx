@@ -17,6 +17,19 @@ import ProfileContainer from "./containers/ProfileContainer";
 import EventsContainer from "./containers/ActionsContainer";
 import {useInterpretWithLocalStorage} from "./machines/withLocalStorage";
 import {PrivateRoute} from "./routes";
+
+import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
+
+const theme = createMuiTheme();
+
+const useStyles = makeStyles((theme) => {
+    root: {
+        // some CSS that accesses the theme
+    }
+});
+
+
+
 const App = () => {
 
 
@@ -46,6 +59,8 @@ const App = () => {
     // @ts-ignore
     // @ts-ignore
     return (
+        <ThemeProvider theme={theme}>
+
         <div>
             <EventsContainer authService={authService}/>
             <Box
@@ -76,6 +91,7 @@ const App = () => {
             <AlertBar snackbarService={snackbarService}/>
 
         </div>
+         </ThemeProvider>
     );
 };
 
