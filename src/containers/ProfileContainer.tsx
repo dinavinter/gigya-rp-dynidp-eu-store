@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import gigyaWebSDK from "../gigya/gigyaWebSDK";
-import Avatar from "@material-ui/core/Avatar";
-import {makeStyles} from "@material-ui/core/styles";
+import Avatar from "@mui/material/Avatar";
+import makeStyles from '@mui/styles/makeStyles';
 import {Redirect, RouteComponentProps} from "@reach/router";
 import {AuthService} from "../machines/authMachine";
 import {useActor, useSelector} from "@xstate/react";
 import {AnyState} from "xstate";
-import {Box, Paper, Typography, Divider} from "@material-ui/core";
+import {Box, Paper, Typography, Divider} from "@mui/material";
 import SessionInfo from "../components/Session";
 import Profile from "../components/Profile";
 import EventsContainer from "./ActionsContainer";

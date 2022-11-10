@@ -5,16 +5,28 @@ import {
     List,
     ListItem,
     ListItemText,
-    makeStyles,
     Paper,
     Typography,
     AppBar,
     Box,
-    responsiveFontSizes, createTheme, ThemeProvider
-} from "@material-ui/core";
+    responsiveFontSizes,
+    createTheme,
+    ThemeProvider,
+    Theme,
+    StyledEngineProvider,
+    adaptV4Theme,
+} from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import {AuthService} from "../machines/authMachine";
 import {useActor} from "@xstate/react";
 import {EventObject, Sender} from "xstate/lib/types";
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -43,7 +55,7 @@ const EventsContainer: React.FC<Props> = ({authService}) => {
     const [authState] = useActor(authService);
 
     const sendEvent = authService.send;
-    let theme = createTheme({
+    let theme = createTheme(adaptV4Theme({
         typography: {
             h5: {
               font: 'mono',
@@ -51,7 +63,7 @@ const EventsContainer: React.FC<Props> = ({authService}) => {
                 fontWeight: 'bold' 
             }
         },
-    });
+    }));
     theme = responsiveFontSizes(theme);
 
     return (
@@ -72,22 +84,22 @@ const EventsContainer: React.FC<Props> = ({authService}) => {
                     </a>
 
                 </div>
-                <ThemeProvider theme={theme}>
+                <StyledEngineProvider injectFirst>
+                    <ThemeProvider theme={theme}>
 
-                    {authService.machine.events
-                        .filter((event) => event && !event.startsWith('xstate.') && !event.endsWith('invocation[0]') && !event.startsWith('done.')&& !event.startsWith('error.'))
-                        .filter((event) => !event.startsWith("SUBMIT")  && !event.startsWith("REGISTER")&& !event.startsWith("PASSWORD")  && !event.startsWith("SOCIAL"))
-                        .map((event) => {
-                            return (
-                                <Event state={authState} send={sendEvent} type={event}/>
-                            );
-                        })}
+                        {authService.machine.events
+                            .filter((event) => event && !event.startsWith('xstate.') && !event.endsWith('invocation[0]') && !event.startsWith('done.')&& !event.startsWith('error.'))
+                            .filter((event) => !event.startsWith("SUBMIT")  && !event.startsWith("REGISTER")&& !event.startsWith("PASSWORD")  && !event.startsWith("SOCIAL"))
+                            .map((event) => {
+                                return (
+                                    <Event state={authState} send={sendEvent} type={event}/>
+                                );
+                            })}
 
-                </ThemeProvider>
+                    </ThemeProvider>
+                </StyledEngineProvider>
              </Box>
         </AppBar>
-
-
     );
 };
 

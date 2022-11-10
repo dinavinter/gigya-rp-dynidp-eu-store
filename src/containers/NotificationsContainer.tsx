@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {AnyEventObject, Interpreter} from "xstate";
-import {makeStyles, Paper, Typography} from "@material-ui/core";
+import { Paper, Typography } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import {NotificationUpdatePayload} from "../models";
 import NotificationList from "../components/NotificationList";
 import {AuthService} from "../machines/authMachine";

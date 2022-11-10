@@ -1,20 +1,20 @@
 import React from "react";
 import {RouteComponentProps} from "@reach/router"
 
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import makeStyles from '@mui/styles/makeStyles';
+import Container from "@mui/material/Container";
 import {useForm} from "react-hook-form";
 import {useSelector} from "@xstate/react";
 import {AuthService} from "../machines/authMachine";
-import {ErrorOutlined} from "@material-ui/icons";
+import {ErrorOutlined} from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -174,7 +174,7 @@ export default function SignIn({authService}: SignInProps) {
             >
                 Sign In With OConnect
             </Button>
-            <Grid container justify="flex-start">
+            <Grid container justifyContent="flex-start">
                 <Grid item>
                     <Link  onClick={handleRegister} variant="body2">
                         {"Don't have an account? Sign Up"}

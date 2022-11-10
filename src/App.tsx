@@ -7,7 +7,7 @@ import {authMachine, AuthService} from "./machines/authMachine";
 import {Router} from "@reach/router";
 import {useMachine} from "@xstate/react";
 import {AnyState} from "xstate";
-import {Box, Container} from "@material-ui/core";
+import {Box, Container} from "@mui/material";
 import {SnackbarContext, snackbarMachine} from "./machines/snackbarMachine";
 import AlertBar from "./components/AlertBar";
 import {withGigya} from "./machines/withGigya";
@@ -18,9 +18,18 @@ import EventsContainer from "./containers/ActionsContainer";
 import {useInterpretWithLocalStorage} from "./machines/withLocalStorage";
 import {PrivateRoute} from "./routes";
 
-import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, Theme, StyledEngineProvider, createTheme } from '@mui/material/styles';
 
-const theme = createMuiTheme();
+import makeStyles from '@mui/styles/makeStyles';
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
+const theme = createTheme();
 
 const useStyles = makeStyles((theme) => {
     root: {
@@ -59,39 +68,41 @@ const App = () => {
     // @ts-ignore
     // @ts-ignore
     return (
-        <ThemeProvider theme={theme}>
+        <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
 
-        <div>
-            <EventsContainer authService={authService}/>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexWrap: 'none',
-                    m: 20,
+            <div>
+                <EventsContainer authService={authService}/>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexWrap: 'none',
+                        m: 20,
 
-                    alignItems: "left"
-                }}
-            >
-                <Box>
+                        alignItems: "left"
+                    }}
+                >
+                    <Box>
 
-                    <Router>
-                        <PrivateRoute default as={ProfileContainer} path={"/"} authService={authService}/>
-                        <SignIn path={"/signin"} authService={authService}/>
-                        <ProfileContainer path="/profile" authService={authService}/>
+                        <Router>
+                            <PrivateRoute default as={ProfileContainer} path={"/"} authService={authService}/>
+                            <SignIn path={"/signin"} authService={authService}/>
+                            <ProfileContainer path="/profile" authService={authService}/>
 
-                    </Router>
+                        </Router>
+                    </Box>
+
+                    <Container fixed maxWidth="sm">
+                        <NotificationsContainer authService={authService} notificationsService={notificationService}/>
+                    </Container>
                 </Box>
 
-                <Container fixed maxWidth="sm">
-                    <NotificationsContainer authService={authService} notificationsService={notificationService}/>
-                </Container>
-            </Box>
 
+                <AlertBar snackbarService={snackbarService}/>
 
-            <AlertBar snackbarService={snackbarService}/>
-
-        </div>
-         </ThemeProvider>
+            </div>
+             </ThemeProvider>
+        </StyledEngineProvider>
     );
 };
 
