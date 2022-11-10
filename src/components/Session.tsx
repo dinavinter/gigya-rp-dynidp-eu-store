@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import {Redirect, RouteComponentProps} from "@reach/router";
 import {AuthService} from "../machines/authMachine";
-import {history} from "../utils/historyUtils";
 import {useActor, useSelector} from "@xstate/react";
 import {AnyState} from "xstate";
 import JsonView from "./JsonTreeViewer";

@@ -1,11 +1,7 @@
 import {Machine, assign, InterpreterFrom, actions} from "xstate";
 import {User, IdToken} from "../models";
-import {
-    logout,
-    performSignup
-} from "../gigya/gigyaAuthMachine";
 
-const {log, resolveSend} = actions;
+const {log} = actions;
 
 export interface AuthMachineSchema {
     states: {

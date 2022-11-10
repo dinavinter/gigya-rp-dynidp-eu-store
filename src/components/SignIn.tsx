@@ -1,5 +1,5 @@
 import React from "react";
-import {RouteComponentProps, useNavigate} from "@reach/router"
+import {RouteComponentProps} from "@reach/router"
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -7,26 +7,12 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import {useForm} from "react-hook-form";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import {
-    yahooGigyaLogin,
-    linkedinGigyaLogin,
-    facebookGigyaLogin,
-    twitterGigyaLogin, googleGigyaLogin, opublicConnectGigyaLogin, oconnectGigyaLogin,
-} from "../gigya/gigyaWebSDK";
-import gigyaWebSDK from "../gigya/gigyaWebSDK";
-// import {useService} from "@xstate/react";
-// import {socialLogin} from "../gigya/gigyaAuthMachine";
-import {asEffect, useActor, useSelector} from "@xstate/react";
-import {Interpreter} from "xstate";
+import {useSelector} from "@xstate/react";
 import {AuthService} from "../machines/authMachine";
 import {ErrorOutlined} from "@material-ui/icons";
 
@@ -166,39 +152,7 @@ export default function SignIn({authService}: SignInProps) {
 
                 </div>
           
-            {/*  <Button
-                startIcon={<FacebookIcon/>}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={handleFacebookGigyaLogin}
-            >
-                Sign In With Facebook
-            </Button>
-            <Button
-                startIcon={<TwitterIcon/>}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={handleGoogleLogin}
-            >
-                Sign In With Google
-            </Button>
-            <Button
-                startIcon={<LinkedInIcon/>}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={handleLinkedinGigyaLogin}
-            >
-                Sign In With LinkedIn
-            </Button>*/}
+        
             <Button
                 type="submit"
                 fullWidth

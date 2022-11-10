@@ -3,7 +3,7 @@ import {
     getJwt,
     logout,
     performSignin,
-    performSignup, performSignupWithSS,
+    performSignup, 
     socialLoginAsync,
     SocialLoginParams
 } from "../gigya/gigyaAuthMachine";
@@ -65,7 +65,7 @@ export const withGigya= (authMachine:AuthMachine)=>authMachine.withConfig({
             
         },
         performSocialLogin: async (ctx, event) => {
-            if (event.type == "SOCIAL") {
+            if (event.type === "SOCIAL") {
                 const payload = omit("type", event);
                 const loginMode =ctx.user? "reAuth" :  "standard"
 

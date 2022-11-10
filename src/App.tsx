@@ -9,7 +9,6 @@ import Profile from "./components/Profile";
 import {authMachine, AuthService} from "./machines/authMachine";
 import {Redirect, RouteComponentProps, Router, useNavigate} from "@reach/router";
 import {useActor, useInterpret, useMachine, useSelector} from "@xstate/react";
-import {history} from "./utils/historyUtils";
 import {AnyState, State} from "xstate";
 import {Box, Container, Snackbar} from "@material-ui/core";
 import {SnackbarContext, snackbarMachine} from "./machines/snackbarMachine";

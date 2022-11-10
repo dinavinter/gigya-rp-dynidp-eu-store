@@ -1,6 +1,5 @@
 import {NotificationResponseItem} from "../models";
-import {actions, createMachine, InterpreterFrom, MachineConfig} from "xstate";
-const {assign}= actions;
+import {assign, createMachine, InterpreterFrom, MachineConfig} from "xstate";
 export interface NotificationsSchema {
 
     states: {

@@ -7,7 +7,6 @@ import {AuthService} from "../machines/authMachine";
 import {NotificationsService} from "../machines/notificationsMachine";
 import {omit} from "lodash/fp";
 import {useActor} from "@xstate/react";
-import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -23,6 +22,14 @@ export interface Props {
     authService: AuthService;
     notificationsService: NotificationsService;
 }
+
+function generateUniqueID() {
+        // Math.random should be unique because of its seeding algorithm.
+        // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+        // after the decimal.
+        return '_' + Math.random().toString(36).substr(2, 9);
+    }
+
 
 const NotificationsContainer: React.FC<Props> = ({authService, notificationsService}) => {
     const classes = useStyles();

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
  *
  * See more in: https://developers.gigya.com/display/GD/onGigyaServiceReady+Template
  */
-function onGigyaServiceReady() {
+export function onGigyaServiceReady() {
     // Check if the user was previously logged in
     if (typeof window.gigya === "undefined") {
         alert("Gigya is not loaded on this page :(");
