@@ -13,8 +13,8 @@ const ReactJson = JSONTree;
 export function JsonView({data}) {
 
 
-    if (!data)
-        return <div></div>
+    if (!data || !data instanceof Object)
+        return <span>`{data || 'no information' }`</span>
     return (
         <div>
             <ReactJson collapsed={false} theme={"bright:inverted"} src={data}/>
