@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import gigyaWebSDK from "../gigya/gigyaWebSDK";
- import Avatar from "@mui/material/Avatar";
 import makeStyles from '@mui/styles/makeStyles';
-import Button from "@mui/material/Button";
-import { useForm } from "react-hook-form";
-import {Redirect, RouteComponentProps} from "@reach/router";
 import {AuthService} from "../machines/authMachine";
-import {useActor, useSelector} from "@xstate/react";
+import { useSelector} from "@xstate/react";
 import {AnyState} from "xstate";
 import JsonView from "./JsonTreeViewer";
 import {Paper, Typography} from "@mui/material";
