@@ -78,7 +78,10 @@ export default function SignIn({authService}: SignInProps) {
         loginService.send({type: 'SOCIAL', provider: "facebook"});
     };
 
-
+    const handleMicrosoftGigyaLogin = () => {
+        loginService.send({type: 'SOCIAL', provider: "microsoft"});
+    };
+    
     const handleLinkedinGigyaLogin = () => {
         loginService.send({type: 'SOCIAL', provider: "linkedin"});
     };
@@ -151,8 +154,41 @@ export default function SignIn({authService}: SignInProps) {
 
 
                 </div>
-          
-        
+
+            <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={handleMicrosoftGigyaLogin}
+            >
+                Sign In With Microsoft
+            </Button>
+            
+            {/*<Button*/}
+            {/*    type="submit"*/}
+            {/*    fullWidth*/}
+            {/*    variant="contained"*/}
+            {/*    color="primary"*/}
+            {/*    className={classes.submit}*/}
+            {/*    onClick={handleFacebookGigyaLogin}*/}
+            {/*>*/}
+            {/*    Sign In With Facebook*/}
+            {/*</Button>*/}
+            
+
+            <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={handleGoogleLogin}
+            >
+                Sign In With Googlw
+            </Button> 
+            
             <Button
                 type="submit"
                 fullWidth
@@ -161,7 +197,7 @@ export default function SignIn({authService}: SignInProps) {
                 className={classes.submit}
                 onClick={handleOPublicConnectGigyaLogin}
             >
-                Sign In With Something Good
+                Sign In OIDC Provider
             </Button>
 
             <Button
