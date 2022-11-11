@@ -11,14 +11,10 @@ import {omit} from "lodash/fp";
 import {AuthMachine} from "./authMachine";
 
 function toMfa(tokenDetails: any) {
-    if(!tokenDetails) return  {}; 
-    const forMfa = tokenDetails.sub_id;
-    forMfa.authTime = tokenDetails.authTime;
-    forMfa.iat = tokenDetails.iat;
-    forMfa.exp = tokenDetails.iat;
-    forMfa.amr = tokenDetails.amr;
-    forMfa.email = tokenDetails.email;
-    return forMfa;
+    return {
+    ...{...tokenDetails.sub_id?.sub_id || {}},
+    ...omit('sub_id', tokenDetails || {})    
+    } 
 }
 
 export const withGigya= (authMachine:AuthMachine)=>authMachine.withConfig({
