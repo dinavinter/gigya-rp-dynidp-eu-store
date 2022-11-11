@@ -50,8 +50,8 @@ const NotificationsContainer: React.FC<Props> = ({authService, notificationsServ
 
 
     function doneDetails(event: AnyEventObject):Partial<NotificationResponseItem >{
-        if(event.type.indexOf('done.') > 0){
-            const title=  `done: ${event.type.replace('done.invoke.' , '').replace(':invocation[0]' , '')}`
+        if(event.type.indexOf('DONE.') > 0){
+            const title=  `done: ${event.type.replace('DONE.INVOKE.' , '').replace(':INVOCATION[0]' , '')}`
             return {
                 severity: 'success',
                 title
@@ -61,8 +61,8 @@ const NotificationsContainer: React.FC<Props> = ({authService, notificationsServ
         return {};
     }
     function errorDetails(event: AnyEventObject):Partial<NotificationResponseItem >{
-        if(event.type.indexOf('error.') > 0){
-            const title= `${event.type
+        if(event.type.indexOf('ERROR.') > 0){
+            const title= `${event.type.toLowerCase()
                 .replace(ActionTypes.ErrorCommunication , 'communication error: ')
                 .replace(ActionTypes.ErrorExecution, 'execution error: ')
                 .replace(ActionTypes.ErrorCustom,  'error: ')
