@@ -105,7 +105,7 @@ export function getJwt(args) {
     return new Promise((resolve, reject) => {
         gigyaWebSDK().accounts.getJWT({
             ...(args || {}),
-            fields: 'profileField,data.dataField,phone_number,isRegistered,authMethods,email',
+            fields: 'phone_number,isRegistered,authMethods,email,provider',
             callback: function (res) {
                 if (res.errorCode === 0) {
                     resolve(res.id_token as string)
