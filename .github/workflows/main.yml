@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to pages
 
 on:
   push:
@@ -12,20 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: escemi-tech/actions-node@v1.11.0
-
       - name: prepare
         uses: DerYeger/yarn-setup-action@v1.0.1
         with:
           node-version: 17
-
  
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-
-      - name: Build project
-        run: npm run build
+      - name: Install
+        run: yarn build
       
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
