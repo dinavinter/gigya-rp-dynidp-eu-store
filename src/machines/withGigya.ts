@@ -11,6 +11,7 @@ import {omit} from "lodash/fp";
 import {AuthMachine} from "./authMachine";
 
 function toMfa(tokenDetails: any) {
+    if(!tokenDetails) return  {}; 
     const forMfa = tokenDetails.sub_id;
     forMfa.authTime = tokenDetails.authTime;
     forMfa.iat = tokenDetails.iat;

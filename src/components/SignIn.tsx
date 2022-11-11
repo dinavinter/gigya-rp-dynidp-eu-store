@@ -15,6 +15,7 @@ import {useForm} from "react-hook-form";
 import {useSelector} from "@xstate/react";
 import {AuthService} from "../machines/authMachine";
 import {ErrorOutlined} from "@mui/icons-material";
+import {Google, WindowTwoTone} from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -142,6 +143,7 @@ export default function SignIn({authService}: SignInProps) {
                         <Button
                             type="submit"
                             fullWidth
+                            
                             variant="contained"
                             color="primary"
                             className={classes.submit}
@@ -154,12 +156,16 @@ export default function SignIn({authService}: SignInProps) {
 
 
                 </div>
+            
+            
 
             <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
+                startIcon ={<WindowTwoTone />}
+
                 className={classes.submit}
                 onClick={handleMicrosoftGigyaLogin}
             >
@@ -184,9 +190,12 @@ export default function SignIn({authService}: SignInProps) {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                onClick={handleGoogleLogin}
+                onClick={handleGoogleLogin}                
+                startIcon ={<Google /> }
+
+
             >
-                Sign In With Googlw
+                Sign In With Google
             </Button> 
             
             <Button
