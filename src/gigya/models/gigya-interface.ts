@@ -1,6 +1,5 @@
-export interface Profile{
-    [key:string]: any
-}
+import {Data, Profile} from "./account";
+
 export interface IBaseEvent {
     eventName: string;
     source: string;
@@ -19,7 +18,7 @@ export interface ILoginEvent extends IBaseGlobalEvent {
     newUser: boolean;
     provider: string;
     profile: Profile;
-    data: object;
+    data: Data;
     remember: boolean;
     dataCenter?: string;
 }
@@ -235,4 +234,5 @@ export type TranslationWrapper = {
     langKey: string,
     translations: Translations
 };
+
 
