@@ -36,7 +36,9 @@ export const notificationsMachineConfig: MachineConfig<NotificationsContext, Not
 export const notificationMachine= createMachine(notificationsMachineConfig, {
     actions: {
         addNotification:  assign({
-            notifications: (context, event: {type: "ADD", notification: NotificationResponseItem})=> [...context.notifications , event.notification]
+            notifications: (context, event: NotificationsEvents)=> {
+                return event.type === "ADD" ? [...context.notifications , event.notification]: context.notifications
+            }
         })
     }
 })

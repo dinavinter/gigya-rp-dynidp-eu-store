@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
-import {AnyEventObject, Interpreter} from "xstate";
+import {AnyEventObject, Interpreter, ActionTypes} from "xstate";
 import { Paper, Typography } from "@mui/material";
 import makeStyles from '@mui/styles/makeStyles';
-import {NotificationUpdatePayload} from "../models";
+import {NotificationResponseItem, NotificationUpdatePayload} from "../models";
 import NotificationList from "../components/NotificationList";
 import {AuthService} from "../machines/authMachine";
-import {NotificationsService} from "../machines/notificationsMachine";
+import {NotificationsEvents, NotificationsService} from "../machines/notificationsMachine";
 import {omit} from "lodash/fp";
 import {useActor} from "@xstate/react";
 
@@ -32,25 +32,62 @@ function generateUniqueID() {
     }
 
 
+
+
 const NotificationsContainer: React.FC<Props> = ({authService, notificationsService}) => {
     const classes = useStyles();
     // const [authState] = useActor(authService);
     const [notificationsState, sendNotifications] = useActor(notificationsService);
 
     function getPayload(event: AnyEventObject) {
-       return event.data || omit("type", event);
-    }
+       return {
+        ...omit( ['type','data'], event),
+        ...(event.data || {})
 
+        };
+    }
+  
+
+
+    function doneDetails(event: AnyEventObject):Partial<NotificationResponseItem >{
+        if(event.type.indexOf('DONE.') > 0){
+            const title=  `done: ${event.type.replace('DONE.INVOKE.' , '').replace(':INVOCATION[0]' , '')}`
+            return {
+                severity: 'success',
+                title
+
+            }
+        }
+        return {};
+    }
+    function errorDetails(event: AnyEventObject):Partial<NotificationResponseItem >{
+        if(event.type.indexOf('ERROR.') > 0){
+            const title= `${event.type.toLowerCase()
+                .replace(ActionTypes.ErrorCommunication , 'communication error: ')
+                .replace(ActionTypes.ErrorExecution, 'execution error: ')
+                .replace(ActionTypes.ErrorCustom,  'error: ')
+                
+                .replace(':invocation[0]' , '')} `;
+            return { 
+                severity: 'error',
+                title
+                
+            }
+        }
+        return {};
+    }
     useEffect(() => {
         authService.onEvent(event => {
-            const payload = getPayload(event);
-
+            if(!event) return;
+            
             sendNotifications({
                 type: "ADD", notification: {
                     id: generateUniqueID(),
-                    title: event.type,
-                    severity: "info",
-                    payload: payload
+                    title:  event.type.toLowerCase(),
+                    severity: 'info',
+                    payload: getPayload(event),
+                    ...doneDetails(event),
+                    ...errorDetails(event)
                 }
             })
         })

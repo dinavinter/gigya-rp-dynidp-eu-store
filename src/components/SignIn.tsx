@@ -15,6 +15,7 @@ import {useForm} from "react-hook-form";
 import {useSelector} from "@xstate/react";
 import {AuthService} from "../machines/authMachine";
 import {ErrorOutlined} from "@mui/icons-material";
+import {Google, WindowTwoTone} from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -78,7 +79,10 @@ export default function SignIn({authService}: SignInProps) {
         loginService.send({type: 'SOCIAL', provider: "facebook"});
     };
 
-
+    const handleMicrosoftGigyaLogin = () => {
+        loginService.send({type: 'SOCIAL', provider: "microsoft"});
+    };
+    
     const handleLinkedinGigyaLogin = () => {
         loginService.send({type: 'SOCIAL', provider: "linkedin"});
     };
@@ -139,6 +143,7 @@ export default function SignIn({authService}: SignInProps) {
                         <Button
                             type="submit"
                             fullWidth
+                            
                             variant="contained"
                             color="primary"
                             className={classes.submit}
@@ -151,8 +156,48 @@ export default function SignIn({authService}: SignInProps) {
 
 
                 </div>
-          
-        
+            
+            
+
+            <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                startIcon ={<WindowTwoTone />}
+
+                className={classes.submit}
+                onClick={handleMicrosoftGigyaLogin}
+            >
+                Sign In With Microsoft
+            </Button>
+            
+            {/*<Button*/}
+            {/*    type="submit"*/}
+            {/*    fullWidth*/}
+            {/*    variant="contained"*/}
+            {/*    color="primary"*/}
+            {/*    className={classes.submit}*/}
+            {/*    onClick={handleFacebookGigyaLogin}*/}
+            {/*>*/}
+            {/*    Sign In With Facebook*/}
+            {/*</Button>*/}
+            
+
+            <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={handleGoogleLogin}                
+                startIcon ={<Google /> }
+
+
+            >
+                Sign In With Google
+            </Button> 
+            
             <Button
                 type="submit"
                 fullWidth
@@ -161,7 +206,7 @@ export default function SignIn({authService}: SignInProps) {
                 className={classes.submit}
                 onClick={handleOPublicConnectGigyaLogin}
             >
-                Sign In With Something Good
+                Sign In OIDC Provider
             </Button>
 
             <Button

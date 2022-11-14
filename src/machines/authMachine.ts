@@ -5,6 +5,7 @@ const {log} = actions;
 
 export interface AuthMachineSchema {
     states: {
+        history: {};
         unauthorized: {};
         login: {};
         logout: {};
@@ -63,6 +64,11 @@ export const authMachine = Machine<AuthMachineContext, AuthMachineSchema, AuthMa
       
       
         states: {
+            history: {
+                type: 'history',
+                history: 'deep' // optional; default is 'shallow'
+            },
+
             unauthorized: {
                 entry: ["resetUser", "onUnauthorizedEntry", log('unauthorized')],
                 on: {

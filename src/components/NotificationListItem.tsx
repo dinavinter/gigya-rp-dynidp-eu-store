@@ -29,7 +29,6 @@ import makeStyles from '@mui/styles/makeStyles';
 
 import {NotificationResponseItem} from "../models";
 import JsonView from "./JsonTreeViewer";
-import ScrollDialog from "./DraggableModal";
 
 export interface NotificationListItemProps {
     notification: NotificationResponseItem;

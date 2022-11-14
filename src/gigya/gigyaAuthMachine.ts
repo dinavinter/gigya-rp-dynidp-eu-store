@@ -1,6 +1,7 @@
 // @ts-nocheck - may need to be at the start of file
 import gigyaWebSDK from "./gigyaWebSDK";
 import {SocialPayload} from "../machines/authMachine";
+import {Account} from "./models";
 
 // @ts-ignore
 
@@ -104,7 +105,7 @@ export function getJwt(args) {
     return new Promise((resolve, reject) => {
         gigyaWebSDK().accounts.getJWT({
             ...(args || {}),
-            fields: 'profileField,data.dataField,phone_number,isRegistered,authMethods,email',
+            fields: 'phone_number,isRegistered,authMethods,email,provider',
             callback: function (res) {
                 if (res.errorCode === 0) {
                     resolve(res.id_token as string)
@@ -118,7 +119,9 @@ export function getJwt(args) {
 }
 
 
-export function getAccount(args): Promise<any> {
+
+
+export function getAccount(args): Promise<Account> {
     return new Promise((resolve, reject) => {
         gigyaWebSDK().accounts.getAccountInfo({
             ...(args || {}),
