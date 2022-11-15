@@ -18,12 +18,20 @@ document.addEventListener("DOMContentLoaded", function() {
  * See more in: https://developers.gigya.com/display/GD/onGigyaServiceReady+Template
  */
 export function onGigyaServiceReady() {
+    
     // Check if the user was previously logged in
     if (typeof window.gigya === "undefined") {
         alert("Gigya is not loaded on this page :(");
     } else {
         // Check if the library is properly loaded or not (stops the flow if it's bad loaded)
-        checkIfGigyaLoaded(); 
+        checkIfGigyaLoaded();
+        
+        gigya.socialize.addEventHandlers({
+            onLogin:(e)=>  window.gigya
+                .flow('login_set_email') 
+                .execute()
+        });
+
     }
 }
 /** *****************************************************/
