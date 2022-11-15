@@ -7,10 +7,10 @@ import {checkIfGigyaLoaded} from "./dynamic-apikey";
  */
 document.addEventListener("DOMContentLoaded", async function () {
     // Initialize the site (and loads Gigya file)
+    var onGigyaServiceReady = onGigyaServiceReady
+
     await initDemoSite();
-    window.gigya.socialize.addEventHandlers({
-        onLogin: onLoginHandler(gigya)
-    });
+   
     
 });
 

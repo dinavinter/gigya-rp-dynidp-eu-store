@@ -246,7 +246,7 @@ export const authMachine = Machine<AuthMachineContext, AuthMachineSchema, AuthMa
          
             authorized: {
                 id: "authorized",
-                entry: [log("authorized"), "onAuthorizedEntry"],
+                entry: [log("authorized"), "onAuthorized"],
                 invoke: {
                     src: "getUserProfile",
                     onDone: {actions: "setUserProfile"},

@@ -9,6 +9,7 @@ import {
 } from "../gigya/gigyaAuthMachine";
 import {omit} from "lodash/fp";
 import {AuthMachine} from "./authMachine";
+import {onLoginHandler} from "../gigya/flow";
 
 function toMfa(tokenDetails: any) {
     return {
@@ -82,6 +83,7 @@ export const withGigya= (authMachine:AuthMachine)=>authMachine.withConfig({
       
     },
     actions: {
+        onAuthorized: onLoginHandler
         
     }
 });
