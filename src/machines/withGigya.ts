@@ -78,72 +78,11 @@ export const withGigya= (authMachine:AuthMachine)=>authMachine.withConfig({
         performLogout: async (ctx, event) => {
             localStorage.removeItem("authState");
             return await logout();
-        },
-        /*'login-service':loginMachine.withConfig({
-            services:{
-                performSignup: async (ctx, event) => {
-                    const payload = omit("type", event);
-                    return await performSignup(payload)
-                },
-                performLogin: async (ctx, event) => {
-                    const payload = omit("type", event);
-                    const loginMode =ctx.user? "reAuth" : "standard"
-                    return await performSignin({...payload, loginMode})
-                },
-                performSocialLogin: async (ctx, event) => {
-                    if (event.type == "SOCIAL") {
-                        const payload = omit("type", event);
-                        const loginMode =ctx.user? "reAuth" :  "standard"
-
-                        return await  socialLoginAsync({...payload, loginMode} as SocialLoginParams);
-                    }
-
-                },
-            }
-        })*/
+        }
+      
     },
     actions: {
-        // assignLoginService:assign({
-        //     loginService:(context) => spawn(loginMachine.withConfig({
-        //         services:{
-        //             performSignup: async (ctx, event) => {
-        //                 const payload = omit("type", event);
-        //                 return await performSignup(payload)
-        //             },
-        //             performLogin: async (ctx, event) => {
-        //                 const payload = omit("type", event);
-        //                 const loginMode =ctx.user? "reAuth" : "standard"
-        //                 return await performSignin({...payload, loginMode})
-        //             },
-        //             performSocialLogin: async (ctx, event) => {
-        //                 if (event.type == "SOCIAL") {
-        //                     const payload = omit("type", event);
-        //                     const loginMode =ctx.user? "reAuth" :  "standard"
-        //
-        //                     return await  socialLoginAsync({...payload, loginMode} as SocialLoginParams);
-        //                 }
-        //
-        //             },
-        //         }
-        //     }))
-        // })
-        // onUnauthorizedEntry: async (ctx, event) => {
-        //     if (history.location.pathname !== "/signin") {
-        //         /* istanbul ignore next */
-        //         history.push("/signin");
-        //     }
-        // },
-        // onAuthorizedEntry: async (ctx, event) => {
-        //     if (history.location.pathname === "/signin") {
-        //         /* istanbul ignore next */
-        //         history.push("/");
-        //     } else {
-        //         history.push(
-        //             `/profile`
-        //         );
-        //     }
-        //
-        // },
+        
     }
 });
 

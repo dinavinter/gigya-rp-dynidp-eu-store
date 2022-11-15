@@ -27,9 +27,20 @@ export function onGigyaServiceReady() {
         checkIfGigyaLoaded();
         
         gigya.socialize.addEventHandlers({
-            onLogin:(e)=>  window.gigya
-                .flow('login_set_email') 
-                .execute()
+            onLogin:(e)=> {
+                console.log(e);
+                window.gigya
+                    
+                    .flow('login_set_email')
+
+                    .on('found-site-identity-email', console.log)
+
+                    .on('without-site-identity-email', console.log)
+
+                    .on('initiate-flow', console.log)
+
+                    .execute();
+            }
         });
 
     }
