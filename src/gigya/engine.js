@@ -64,10 +64,10 @@ export function getLanguage() {
 /**
  * Loads the configuration file into the window object to be used later on to customize the UI
  */
-export function initDemoSite() {
+export async function initDemoSite(){
     // log('0. Init Demo site');
     // Read configuration file and load it
-    fetch('/config/site.json')
+    await fetch('/config/site.json')
         .then((res) => { return res.json(); })
         .then((out) => {
 

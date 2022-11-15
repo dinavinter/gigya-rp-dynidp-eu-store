@@ -5,10 +5,31 @@ import {checkIfGigyaLoaded} from "./dynamic-apikey";
  * Initial function (once all the content is loaded). It loads the configuration
  * from setup/site.json and starts the site UI
  */
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function () {
     // Initialize the site (and loads Gigya file)
-    initDemoSite();
+    await initDemoSite();
+    window.gigya.socialize.addEventHandlers({
+        onLogin: onLoginHandler(gigya)
+    });
+    
 });
+
+
+
+// onLogin Event handler
+function onLoginHandler(gigya) {
+    return (event)=>
+    gigya.flow('login_set_email')
+
+        .on('found-site-identity-email', console.log)
+
+        .on('without-site-identity-email', console.log)
+
+        .on('initiate-flow', console.log)
+        
+        .execute();
+}
+
 
 /**
  * This function will be triggered once Gigya is fully loaded and ready to be used.
@@ -18,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
  * See more in: https://developers.gigya.com/display/GD/onGigyaServiceReady+Template
  */
 export function onGigyaServiceReady() {
-    
+    console.log('onGigyaServiceReady');
     // Check if the user was previously logged in
     if (typeof window.gigya === "undefined") {
         alert("Gigya is not loaded on this page :(");
@@ -26,23 +47,10 @@ export function onGigyaServiceReady() {
         // Check if the library is properly loaded or not (stops the flow if it's bad loaded)
         checkIfGigyaLoaded();
         
-        gigya.socialize.addEventHandlers({
-            onLogin:(e)=> {
-                console.log(e);
-                window.gigya
-                    
-                    .flow('login_set_email')
-
-                    .on('found-site-identity-email', console.log)
-
-                    .on('without-site-identity-email', console.log)
-
-                    .on('initiate-flow', console.log)
-
-                    .execute();
-            }
-        });
+       
 
     }
+
+  
 }
 /** *****************************************************/
