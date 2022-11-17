@@ -1,0 +1,147 @@
+{
+  "$id": "1",
+  "definitionId": "profile_email_confirmation",
+  "versionId": "cab45bd8868a490db272a8500317341b",
+  "tenantId": "433855629853",
+  "name": "email_confirmation",
+  "displayName": "email confirmation",
+  "description": "profile email confirmation after social login",
+  "version": 2,
+  "variables": {
+    "$id": "2",
+    "data": {
+      "BasePath": "runtime/v1/workflowDefinitions/profile_email_confirmation",
+      "PartnerId": "2290322"
+    }
+  },
+  "customAttributes": {
+    "$id": "3",
+    "data": {
+      "LastSaveDate": "2022-11-17T12:38:31.4836944Z"
+    }
+  },
+  "isSingleton": false,
+  "persistenceBehavior": "WorkflowBurst",
+  "deleteCompletedInstances": false,
+  "isPublished": true,
+  "isLatest": true,
+  "createdAt": "1970-01-01T00:00:00Z",
+  "activities": [
+    {
+      "$id": "4",
+      "activityId": "cfe58fae-e474-474a-9563-06efc4f189dc",
+      "type": "DisplayScreenSetCompositeActivity",
+      "displayName": "approve-email-screen",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "$id": "5",
+          "name": "ScreenSet",
+          "expressions": {
+            "$id": "6",
+            "Literal": "Default-ProfileUpdate"
+          }
+        },
+        {
+          "$id": "7",
+          "name": "StartScreen",
+          "expressions": {
+            "$id": "8",
+            "Literal": "Default-ProfileUpdate/approve-email-screen"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "$id": "9",
+      "activityId": "86d68f69-6962-407b-9e4b-b403a45bbd8c",
+      "type": "IfElse",
+      "displayName": "site identity contains email",
+      "description": "profile email should be available to account as first party data",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "$id": "10",
+          "name": "Condition",
+          "expressions": {
+            "$id": "11",
+            "BooleanJavascript": "isNullOrEmpty(account.identities.find(identity=>identity.provider === 'site').email)"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "$id": "12",
+      "activityId": "6bff5691-e17f-4c0a-aabc-3669acc6a899",
+      "type": "EventCompositeActivity",
+      "displayName": "found-site-identity-email",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "$id": "13",
+          "name": "EventName",
+          "expressions": {
+            "$id": "14",
+            "Literal": "found-site-identity-email"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    },
+    {
+      "$id": "15",
+      "activityId": "196c5c73-1fbb-4aa1-8bbb-d74e06f38e34",
+      "type": "EventCompositeActivity",
+      "displayName": "initiate-flow",
+      "persistWorkflow": false,
+      "loadWorkflowContext": false,
+      "saveWorkflowContext": false,
+      "properties": [
+        {
+          "$id": "16",
+          "name": "EventName",
+          "expressions": {
+            "$id": "17",
+            "Literal": "initiate-flow"
+          }
+        }
+      ],
+      "propertyStorageProviders": {}
+    }
+  ],
+  "connections": [
+    {
+      "$id": "18",
+      "sourceActivityId": "86d68f69-6962-407b-9e4b-b403a45bbd8c",
+      "targetActivityId": "6bff5691-e17f-4c0a-aabc-3669acc6a899",
+      "outcome": "False"
+    },
+    {
+      "$id": "19",
+      "sourceActivityId": "196c5c73-1fbb-4aa1-8bbb-d74e06f38e34",
+      "targetActivityId": "86d68f69-6962-407b-9e4b-b403a45bbd8c",
+      "outcome": "Done"
+    },
+    {
+      "$id": "20",
+      "sourceActivityId": "86d68f69-6962-407b-9e4b-b403a45bbd8c",
+      "targetActivityId": "cfe58fae-e474-474a-9563-06efc4f189dc",
+      "outcome": "True"
+    },
+    {
+      "$id": "21",
+      "sourceActivityId": "cfe58fae-e474-474a-9563-06efc4f189dc",
+      "targetActivityId": "86d68f69-6962-407b-9e4b-b403a45bbd8c",
+      "outcome": "Done"
+    }
+  ],
+  "id": "cab45bd8868a490db272a8500317341b"
+}
