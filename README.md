@@ -1,12 +1,43 @@
-# Getting Started with Create React App
+ # Gigya - CDC Login
+ 
+ - demosteate common use cases in gigya implememation 
+ - client side implemantation with Gigya sdk
+ 
+ ## Live site
+deployed to https://store.eu.dynidp.com/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  
 
-## Available Scripts
+## Confirmation flow
+> scenario - after social login with an email we want the ens user to confirm his email address in order to make the email available as first party data that won't be removed in case the user revokes his email sharing privacy.
+
+### Gigya setup
+
+-	Add email confirmation screen in screen set
+-	Use [flow builder](https://sap-my.sharepoint.com/personal/dina_vinter_sap_com/Documents/technical-implamatation-Q&A/-%09https:/help.sap.com/docs/SAP_CUSTOMER_DATA_CLOUD/8b8d6fffe113457094a17701f63e3d6a/6c864c4647a14bb2a9212aeace424286.html?locale=en-US&q=flow%20builder) to conditionally trigger the screen 
+- Trigger the flow upon on login event, either manualy in the web site or in screen set custom JS
+
+![image](https://user-images.githubusercontent.com/29256880/202448940-588cfd0e-78e6-43f4-a7d1-f48a9ed0a259.png)
+
+```js title='manual handler'
+export function onLoginHandler() {
+    gigyaWebSDK()
+       .flow('profile_email_confirmation') 
+            .on('initiate-flow', console.log)             
+            .on('without-site-identity-email', console.log)        
+            .execute();
+}
+```
+ 
+ ![image](https://user-images.githubusercontent.com/29256880/202450495-d52dc925-5ea7-42fe-96aa-9a6afe258852.png?hight=40)
+
+  
+ 
+## Local Development
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn dev`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,33 +45,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
+ 
+### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+ 
