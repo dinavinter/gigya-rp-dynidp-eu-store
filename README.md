@@ -18,6 +18,7 @@ deployed to https://store.eu.dynidp.com/
 - Trigger the flow upon on login event, either manualy in the web site or in screen set custom JS
 
 #### Flow builder
+You can import the flow file from [here](workflow-definition-profile_email_confirmation.json)
 ![image](https://user-images.githubusercontent.com/29256880/202448940-588cfd0e-78e6-43f4-a7d1-f48a9ed0a259.png )
 
 #### local handler
