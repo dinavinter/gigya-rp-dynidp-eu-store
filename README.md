@@ -17,7 +17,10 @@ deployed to https://store.eu.dynidp.com/
 -	Use [flow builder](https://sap-my.sharepoint.com/personal/dina_vinter_sap_com/Documents/technical-implamatation-Q&A/-%09https:/help.sap.com/docs/SAP_CUSTOMER_DATA_CLOUD/8b8d6fffe113457094a17701f63e3d6a/6c864c4647a14bb2a9212aeace424286.html?locale=en-US&q=flow%20builder) to conditionally trigger the screen 
 - Trigger the flow upon on login event, either manualy in the web site or in screen set custom JS
 
-![image](https://user-images.githubusercontent.com/29256880/202448940-588cfd0e-78e6-43f4-a7d1-f48a9ed0a259.png)
+#### Flow builder
+![image](https://user-images.githubusercontent.com/29256880/202448940-588cfd0e-78e6-43f4-a7d1-f48a9ed0a259.png )
+
+#### local handler
 
 ```js title='manual handler'
 export function onLoginHandler() {
@@ -29,6 +32,8 @@ export function onLoginHandler() {
 }
 ```
  
+ #### Screenset handler
+
  ![image](https://user-images.githubusercontent.com/29256880/202450495-d52dc925-5ea7-42fe-96aa-9a6afe258852.png?hight=40)
 
   
