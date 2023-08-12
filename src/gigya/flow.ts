@@ -2,10 +2,7 @@
 import gigyaWebSDK from "./gigyaWebSDK";
 
 export function onLoginHandler() {
-    gigyaWebSDK().flow('login_set_email')
-
-            .on('found-site-identity-email', console.log)
-
+    gigyaWebSDK().flow('login_set_email') 
             .on('without-site-identity-email', console.log)
 
             .on('initiate-flow', console.log) 

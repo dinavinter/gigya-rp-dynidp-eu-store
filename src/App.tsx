@@ -68,7 +68,6 @@ const App = () => {
     // @ts-ignore
     // @ts-ignore
     return (
-        <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
 
             <div>
@@ -102,7 +101,6 @@ const App = () => {
 
             </div>
              </ThemeProvider>
-        </StyledEngineProvider>
     );
 };
 
